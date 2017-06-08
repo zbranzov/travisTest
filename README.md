@@ -1,4 +1,4 @@
-# Develop a NativeScript plugin [![Build Status](https://travis-ci.org/NativeScript/nativescript-plugin-seed.svg?branch=master)](https://travis-ci.org/NativeScript/nativescript-plugin-seed)
+# Develop a NativeScript plugin [![Build Status](https://travis-ci.org/zbranzov/travisTest.svg?branch=master)](https://travis-ci.org/zbranzov/travisTest)
 
 > This repo is heavily based on [@NathanWalker](https://github.com/NathanWalker)'s [Plugin Seed](https://github.com/NathanWalker/nativescript-plugin-seed). Thanks Nathan!
 
