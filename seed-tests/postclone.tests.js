@@ -41,7 +41,7 @@ describe('postclone', function() {
                     done.fail(err);
                 } else {
                     exec("cd " + constants.SEED_COPY_LOCATION + " && git config --get remote.origin.url", function(error, stdout, stderr) {
-                        expect(stdout).toContain("NativeScript/nativescript-plugin-seed.git");
+                        expect(stdout).toContain("zbranzov/travisTest.git");
                         done();
                     });
                 }
