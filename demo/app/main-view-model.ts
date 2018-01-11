@@ -1,14 +1,14 @@
-import { Observable } from 'data/observable';
-import { YourPlugin } from 'nativescript-yourplugin';
+import { Observable } from 'tns-core-modules/data/observable';
+import { Myplugin } from 'nativescript-myplugin';
 
 export class HelloWorldModel extends Observable {
   public message: string;
-  private yourPlugin: YourPlugin;
+  private myplugin: Myplugin;
 
   constructor() {
     super();
 
-    this.yourPlugin = new YourPlugin();
-    this.message = this.yourPlugin.message;
+    this.myplugin = new Myplugin();
+    this.message = this.myplugin.message;
   }
 }

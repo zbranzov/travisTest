@@ -11,13 +11,6 @@
             "es6",
             "dom"
         ],
-        "baseUrl": ".",
-        "paths": {
-            "*": [
-                "./node_modules/tns-core-modules/*",
-                "./node_modules/*"
-            ]
-        },
         "pretty": true,
         "allowUnreachableCode": false,
         "allowUnusedLabels": false,
@@ -26,7 +19,13 @@
         "noImplicitAny": false,
         "noImplicitReturns": true,
         "noImplicitUseStrict": false,
-        "noFallthroughCasesInSwitch": true
+        "noFallthroughCasesInSwitch": true,
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "./node_modules/*"
+            ]
+        }
     },
     "exclude": [
         "node_modules",

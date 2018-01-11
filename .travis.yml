@@ -1,29 +1,79 @@
 matrix:
   include:
+    - stage: "Lint"
+      language: node_js
+      os: linux
+      node_js: "6"
+      script:
+        - cd src && npm run ci.tslint && cd ../demo && npm run ci.tslint
+    - stage: "WebPack, Build and Test"
+      os: osx
+      env:
+        - WebPack="iOS"
+      osx_image: xcode9.2
+      language: node_js 
+      node_js: "6"
+      jdk: oraclejdk8
+      script:
+        - cd demo && npm run ci.ios.build.webpack
+    - language: android
+      os: linux
+      env:
+        - WebPack="Android"
+      jdk: oraclejdk8
+      before_install: nvm install 6.10.3
+      script: 
+        - cd demo && npm run ci.android.build.webpack
+    - language: android
+      env: 
+        - BuildAndroid="26"
+      os: linux
+      jdk: oraclejdk8
+      before_install: nvm install stable
+      script:
+        - cd demo && npm run ci.android.build
+    - os: osx
+      env: 
+        - BuildiOS="11"
+        - Xcode="9.2"
+      osx_image: xcode9.2
+      language: node_js 
+      node_js: "6"
+      jdk: oraclejdk8
+      script: 
+        - cd demo && npm run ci.ios.build
     - os: linux
-      language: 
+      language: android
+      dist: precise
+      sudo: required
+      jdk: oraclejdk8
       before_script:
-        - echo no | android create avd --force -n test -t android-23 -b armeabi-v7a
+        - echo no | android create avd --force -n test -t android-21 -b armeabi-v7a
         - emulator -avd test -no-audio -no-window &
         - android-wait-for-emulator
       before_install:
-        - nvm install node
+        - nvm install 6
+      script:
+        - cd src && npm run test.android
     - os: osx
       language: node_js
       node_js: "6"
-      osx_image: xcode8.3
+      jdk: oraclejdk8
+      osx_image: xcode9.2
+      script:
+        - cd src && npm run test.ios
 
 android:
   components:
-    - build-tools-23.0.1
+    - tools
+    - platform-tools
+    - build-tools-26.0.1
+    - android-26
     - android-23
     - extra-android-m2repository
-    - sys-img-armeabi-v7a-android-23
+    - sys-img-armeabi-v7a-android-21
 
 install:
-    - wget https://github.com/zbranzov/travisTest.git
-    - cd seed-tests
-    - npm i
-
-script:
-    - npm run test
+    - echo no | npm install -g nativescript
+    - tns usage-reporting disable
+    - tns error-reporting disable
