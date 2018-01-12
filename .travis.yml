@@ -61,7 +61,8 @@ matrix:
       jdk: oraclejdk8
       osx_image: xcode9.2
       script:
-        - cd src && npm run test.ios
+        - cd src
+        - travis_wait npm run test.ios
 
 android:
   components:
