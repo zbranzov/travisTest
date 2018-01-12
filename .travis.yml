@@ -59,7 +59,9 @@ matrix:
       language: node_js
       node_js: "6"
       jdk: oraclejdk8
-      osx_image: xcode8.3
+      osx_image: xcode9.2
+      before_script:
+        - ios-sim start --devicetypeid "iPhone-7-Plus, 10.3"
       script:
         - cd src
         - travis_wait npm run test.ios
@@ -78,3 +80,4 @@ install:
     - echo no | npm install -g nativescript
     - tns usage-reporting disable
     - tns error-reporting disable
+    - echo no | npm install -g ios-sim
